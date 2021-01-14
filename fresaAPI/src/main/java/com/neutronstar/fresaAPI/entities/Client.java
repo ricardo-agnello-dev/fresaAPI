@@ -40,5 +40,13 @@ public class Client implements Serializable {
 	joinColumns = @JoinColumn(name = "client_id"),
 	inverseJoinColumns = @JoinColumn(name = "gear_service_id"))
 	private Set<GearService> gearServices = new HashSet<>();
+	
+	public Double getTotalPrice() {
+		double sum = 0.0;
+		for (GearService g : gearServices) {
+			sum += g.getTotalItem();
+		}
+		return sum;
+	}
 
 }

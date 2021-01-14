@@ -1,10 +1,11 @@
 package com.neutronstar.fresaAPI.dto;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import com.neutronstar.fresaAPI.entities.GearService;
+import com.neutronstar.fresaAPI.entities.Client;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -24,8 +25,17 @@ public class ClientDTO implements Serializable {
 
 	private Long id;
 	private String name;
+	private Double totalPrice;
 	
 	@Getter
-	private Set<GearService> gearServices = new HashSet<>();
+	private List<GearServiceDTO> gearServices = new ArrayList<>();
+	
+	public ClientDTO (Client entity) {
+		id = entity.getId();
+		name = entity.getName();
+		totalPrice = entity.getTotalPrice();
+		gearServices = entity.getGearServices().stream().map(x -> new GearServiceDTO(x)).collect(Collectors.toList());
+		
+	}
 
 }
