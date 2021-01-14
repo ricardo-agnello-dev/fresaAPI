@@ -20,7 +20,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -48,5 +47,13 @@ public class Client implements Serializable {
 		}
 		return sum;
 	}
+
+	public Client(Long id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+	
+	
 
 }
